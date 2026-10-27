@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Datos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 50% 20%, #faf8f5, #f0ebe1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background-color: #ecc4f0;
+      border-radius: 28px;
+      padding: 36px 30px;
+      box-shadow: 
+        0 10px 30px rgba(74, 85, 104, 0.08),
+        0 20px 40px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(227, 107, 223, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .form-group label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ca64b2;
+    }
+
+    .form-group input {
+      width: 190px;
+      height: 48px;
+      border: 2px solid #992378;
+      border-radius: 14px;
+      padding: 0 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #be31b5;
+      background-color: #eb73f453;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #be31a2;
+      background-color: #f592e9ef;
+      box-shadow: 0 4px 12px rgba(176, 95, 169, 0.732);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-left:  10px;
+    }
+
+    .btn {
+      flex: 1;
+      height: 48px;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-agregar {
+      background-color: #d47ace;
+      color: #fef0ff;
+      box-shadow: 0 4px 12px rgba(225, 157, 231, 0.99);
+    }
+
+    .btn-agregar:hover {
+      background-color: #960594;
+    }
+
+    .btn-borrar {
+      background-color: #a05183;
+      color: #fff;
+      border: 1px solid #c9afcfd1;
+    }
+
+    .btn-borrar:hover {
+      background-color: #b761a1;
+    }
+
+    .resultado {
+      background: linear-gradient(135deg, #ec73c2 0%, #80276f 100%);
+      border-radius: 18px;
+      padding: 20px;
+      min-height: 100px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgba(59, 49, 190, 0.12);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="form-group">
+      <label for="nombre">Nombre :</label>
+      <input type="text" id="nombre" value="Laidy">
+    </div>
+
+    <div class="form-group">
+      <label for="edad">Edad :</label>
+      <input type="number" id="edad" value="19">
+    </div>
+
+    <div class="form-group">
+      <label for="estatura">Estatura :</label>
+      <input type="text" id="estatura" value="1.56">
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn btn-agregar" id="btnAgregar">Agregar</button>
+      <button type="button" class="btn btn-borrar" id="btnBorrar">Borrar</button>
+    </div>
+
+    <div class="resultado" id="resultado">
+      Hola Laidy tu tienes 19 años y actualmente mide 1.56 de altura
+    </div>
+  </div>
+
+  <script>
+    const nombreInput = document.getElementById('nombre');
+    const edadInput = document.getElementById('edad');
+    const estaturaInput = document.getElementById('estatura');
+    const btnAgregar = document.getElementById('btnAgregar');
+    const btnBorrar = document.getElementById('btnBorrar');
+    const resultado = document.getElementById('resultado');
+
+    btnAgregar.addEventListener('click', () => {
+      const nombre = nombreInput.value.trim();
+      const edad = edadInput.value.trim();
+      const estatura = estaturaInput.value.trim();
+
+      if (nombre && edad && estatura) {
+        resultado.textContent = `Hola ${nombre} tu tienes ${edad} años y actualmente mide ${estatura} de altura`;
+      } else {
+        resultado.textContent = 'Por favor completa todos los campos.';
+      }
+    });
+
+    btnBorrar.addEventListener('click', () => {
+      nombreInput.value = '';
+      edadInput.value = '';
+      estaturaInput.value = '';
+      resultado.textContent = '';
+    });
+  </script>
+
+</body>
+</html>
